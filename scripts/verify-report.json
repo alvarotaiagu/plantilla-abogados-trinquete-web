@@ -1,6 +1,6 @@
 {
-  "base": "http://127.0.0.1:8979/plantilla-abogados-trinquete-web/",
-  "fecha": "2026-09-20T18:51:36.849Z",
+  "base": "https://alvarotaiagu.github.io/plantilla-abogados-trinquete-web/",
+  "fecha": "2026-09-20T18:54:56.423Z",
   "pasos": [
     {
       "nombre": "la cortina acaba retirada (normal)",
@@ -92,7 +92,7 @@
     {
       "nombre": "el reloj marca la hora con movimiento reducido",
       "ok": true,
-      "detalle": "20:52:38"
+      "detalle": "20:55:59"
     },
     {
       "nombre": "el cuadrante sigue calculando con movimiento reducido",
