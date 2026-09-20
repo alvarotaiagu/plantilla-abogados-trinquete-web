@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<!--
+  Sitio de demostración. Ouzande Abogados es un despacho FICTICIO, creado
+  como plantilla de muestra para la biblioteca de WEBS NEGOCIOS. El nombre,
+  las personas, la dirección, los teléfonos y los honorarios son inventados:
+  no corresponden a ningún despacho real de Ferrol ni de ningún otro lugar.
+  Los plazos legales que se citan sí son los generales del ordenamiento
+  español, y se muestran a título orientativo, nunca como asesoramiento.
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ouzande Abogados — Laboral, extranjería y sucesiones en Ferrol</title>
+<meta name="description" content="Despacho de Uxía Ouzande Brión en Ferrol: derecho laboral, extranjería, sucesiones y reclamaciones a la Administración. Cuatro materias en las que lo primero que se pierde es el plazo. Sitio de demostración ficticio.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#EFECE4">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ouzande Abogados — Ferrol">
+<meta property="og:description" content="Lo primero que se pierde es el plazo. Laboral, extranjería y sucesiones en Ferrol. Sitio de demostración ficticio.">
+<meta property="og:image" content="assets/img/logo/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_ES">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/logo/icon-180.png">
+<link rel="manifest" href="manifest.json">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Martian+Mono:wght@400;500;700&family=Prata&display=swap">
+<link rel="stylesheet" href="css/style.css">
+
+<script>
+  /* Bandera de movimiento mínima y bloqueante: decide ANTES de que cargue
+     GSAP si hay que animar. No depende del CDN. */
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce) document.documentElement.classList.add('js-motion');
+    document.documentElement.classList.add('js-si');
+  })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": "Ouzande Abogados",
+  "description": "Despacho de abogados en Ferrol dedicado a derecho laboral, extranjería, sucesiones y reclamaciones a la Administración, con el control de plazos como método de trabajo.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rúa da Áncora, 21, 1º izq.",
+    "addressLocality": "Ferrol",
+    "addressRegion": "A Coruña",
+    "postalCode": "15402",
+    "addressCountry": "ES"
+  },
+  "telephone": "+34981000000",
+  "email": "contacto@ouzandeabogados.example",
+  "areaServed": "Galicia",
+  "availableLanguage": ["es", "gl"],
+  "priceRange": "Primera consulta 50 €"
+}
+</script>
+</head>
+<body>
+
+<!-- Sprite SVG compartido: degradados de latón y acero. Oculto con el patrón
+     estándar (absolute + 0×0): un <svg> sin CSS propio se renderiza a 300×150
+     y empujaría el <main>. -->
+<svg class="sprite-oculto" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="g-laton" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E7C476"/>
+      <stop offset=".38" stop-color="#C08F2E"/>
+      <stop offset=".62" stop-color="#8A6412"/>
+      <stop offset="1" stop-color="#D8A94A"/>
+    </linearGradient>
+    <linearGradient id="g-acero" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9AA3AE"/>
+      <stop offset=".5" stop-color="#5C6672"/>
+      <stop offset="1" stop-color="#868F9B"/>
+    </linearGradient>
+    <radialGradient id="g-rubi" cx=".35" cy=".3" r=".8">
+      <stop offset="0" stop-color="#D8596A"/>
+      <stop offset="1" stop-color="#94202E"/>
+    </radialGradient>
+  </defs>
+</svg>
+
+<!-- ======================= CORTINA DE ENTRADA =======================
+     Gesto propio de «Trinquete»: dos medias platinas cuyos cantos son
+     dientes engranados. El segundero da una vuelta, el trinquete suelta y
+     las dos mitades se separan girando un diente. Se retira SIEMPRE. -->
+<div class="cortina" id="cortina" aria-hidden="true">
+  <div class="cortina-mitad cortina-arriba" id="cortina-arriba">
+    <div class="cortina-contenido">
+      <svg class="cortina-dial" viewBox="0 0 120 120" aria-hidden="true">
+        <circle cx="60" cy="60" r="52" fill="none" stroke="#2E343E" stroke-width="1.4"/>
+        <circle cx="60" cy="60" r="44" fill="none" stroke="#2E343E" stroke-width=".8" stroke-dasharray="1 5.2"/>
+        <line id="cortina-aguja" x1="60" y1="60" x2="60" y2="18" stroke="#D8A94A" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="60" cy="60" r="3.2" fill="#D8A94A"/>
+      </svg>
+      <p class="cortina-marca">Ouzande</p>
+    </div>
+  </div>
+  <div class="cortina-mitad cortina-abajo" id="cortina-abajo">
+    <div class="cortina-contenido">
+      <p class="cortina-pie">Abogados · Ferrol</p>
+    </div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor" aria-hidden="true">
+  <svg viewBox="0 0 40 40"><g id="cursor-rueda">
+    <circle cx="20" cy="20" r="11" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <circle cx="20" cy="20" r="2" fill="currentColor"/>
+    <g stroke="currentColor" stroke-width="1.2">
+      <line x1="20" y1="6" x2="20" y2="10"/><line x1="20" y1="30" x2="20" y2="34"/>
+      <line x1="6" y1="20" x2="10" y2="20"/><line x1="30" y1="20" x2="34" y2="20"/>
+    </g>
+  </g></svg>
+</div>
+
+<a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+<header class="cabecera">
+  <div class="cabecera-caja">
+    <a class="marca" href="#portada" aria-label="Ouzande Abogados, inicio">
+      <svg class="marca-icono" viewBox="0 0 48 48" aria-hidden="true">
+        <!-- Trinquete: rueda de dientes de sierra + uñeta. Solo avanza. -->
+        <path fill="currentColor" fill-rule="evenodd" d="M24.00 7.40L31.27 5.15L29.97 8.51L31.20 9.04L38.73 10.17L36.10 12.64L36.98 13.65L43.27 17.93L39.83 19.01L40.18 20.31L43.99 26.89L40.43 26.38L40.18 27.69L40.76 35.28L37.77 33.27L36.98 34.35L34.20 41.43L32.39 38.33L31.20 38.96L25.63 44.13L25.34 40.55L24.00 40.60L16.73 42.85L18.03 39.49L16.80 38.96L9.27 37.83L11.90 35.36L11.02 34.35L4.73 30.07L8.17 28.99L7.82 27.69L4.01 21.11L7.57 21.62L7.82 20.31L7.24 12.72L10.23 14.73L11.02 13.65L13.80 6.57L15.61 9.67L16.80 9.04L22.37 3.87L22.66 7.45ZM32.4 24A8.4 8.4 0 1 0 15.6 24A8.4 8.4 0 1 0 32.4 24Z"/>
+        <path class="marca-uneta" fill="var(--acero)" d="M42.6 1.7 45.8 4.9 36.2 13.3 34.2 11.3Z"/>
+        <circle class="marca-uneta" fill="var(--acero)" cx="44.2" cy="3.3" r="2"/>
+        <circle cx="24" cy="24" r="4.4" fill="var(--rubi)"/>
+      </svg>
+      <span class="marca-texto">
+        <span class="marca-nombre">Ouzande</span>
+        <span class="marca-cola">Abogados</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Principal">
+      <ul>
+        <li><a href="#cuadrante" data-cursor="enlace">Plazos</a></li>
+        <li><a href="#rodaje" data-cursor="enlace">Método</a></li>
+        <li><a href="#materias" data-cursor="enlace">Materias</a></li>
+        <li><a href="#despacho" data-cursor="enlace">Despacho</a></li>
+        <li><a href="#honorarios" data-cursor="enlace">Honorarios</a></li>
+      </ul>
+    </nav>
+
+    <!-- Indicador de avance de página: NO es una barra. Es una manecilla
+         que recorre un dial, como el resto del sitio. -->
+    <div class="avance" id="avance" role="img" aria-label="Avance de lectura de la página">
+      <svg viewBox="0 0 44 44" aria-hidden="true">
+        <circle cx="22" cy="22" r="18.5" fill="none" stroke="var(--linea)" stroke-width="1.4"/>
+        <g stroke="var(--canto)" stroke-width="1.2">
+          <line x1="22" y1="3.5" x2="22" y2="7"/><line x1="40.5" y1="22" x2="37" y2="22"/>
+          <line x1="22" y1="40.5" x2="22" y2="37"/><line x1="3.5" y1="22" x2="7" y2="22"/>
+        </g>
+        <circle class="avance-arco" cx="22" cy="22" r="18.5" fill="none"
+                stroke="var(--laton-sup)" stroke-width="2.6" stroke-linecap="round"
+                pathLength="100" stroke-dasharray="0 100" transform="rotate(-90 22 22)"/>
+        <line class="avance-aguja" id="avance-aguja" x1="22" y1="22" x2="22" y2="8.5"
+              stroke="var(--acero)" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="22" cy="22" r="2.4" fill="var(--acero)"/>
+      </svg>
+      <span class="avance-cifra" id="avance-cifra">0&nbsp;%</span>
+    </div>
+
+    <a class="boton boton-solido boton-magnetico cabecera-cta" href="#contacto" data-cursor="enlace">Dime mi plazo</a>
+
+    <button class="menu-boton" id="menu-boton" aria-expanded="false" aria-controls="menu-movil">
+      <span class="menu-barra"></span><span class="menu-barra"></span>
+      <span class="sr">Abrir menú</span>
+    </button>
+  </div>
+</header>
+
+<div class="menu-movil" id="menu-movil" aria-hidden="true">
+  <nav aria-label="Menú móvil">
+    <ul>
+      <li><a href="#cuadrante">Plazos</a></li>
+      <li><a href="#rodaje">Método</a></li>
+      <li><a href="#materias">Materias</a></li>
+      <li><a href="#despacho">Despacho</a></li>
+      <li><a href="#honorarios">Honorarios</a></li>
+      <li><a href="#preguntas">Preguntas</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+  <p class="menu-pie">981 00 00 00 · Rúa da Áncora, 21 · Ferrol</p>
+</div>
+
+<main id="contenido">
+
+<!-- ============================ PORTADA ============================ -->
+<section class="hero" id="portada">
+  <div class="container hero-caja">
+
+    <div class="hero-texto">
+      <p class="etiqueta">Ferrol · Laboral · Extranjería · Sucesiones</p>
+      <h1 class="hero-titular titular-reveal">Lo primero que se pierde es el plazo</h1>
+      <p class="hero-entrada">
+        Casi nunca se pierde un asunto porque el derecho esté en contra. Se
+        pierde porque el día veintiuno ya no hay nada que hacer. Este despacho
+        está montado como un mecanismo: cada asunto entra con su fecha de
+        vencimiento y no hay ninguna pieza que la pueda olvidar.
+      </p>
+
+      <div class="hero-acciones">
+        <a class="boton boton-solido boton-magnetico" href="#cuadrante" data-cursor="enlace">Calcular mi plazo</a>
+        <a class="boton boton-hueco boton-magnetico" href="tel:+34981000000" data-cursor="enlace">981 00 00 00</a>
+      </div>
+
+      <dl class="hero-datos">
+        <div>
+          <dt>Demanda por despido</dt>
+          <dd><span class="cifra">20</span> días hábiles</dd>
+        </div>
+        <div>
+          <dt>Recurso de alzada</dt>
+          <dd><span class="cifra">1</span> mes</dd>
+        </div>
+        <div>
+          <dt>Impuesto de sucesiones</dt>
+          <dd><span class="cifra">6</span> meses</dd>
+        </div>
+      </dl>
+    </div>
+
+    <figure class="hero-mecanismo" id="hero-mecanismo">
+      <!-- El movimiento vive en el canvas (ruedas que engranan de verdad:
+           mismo módulo, relación de dientes y fase resuelta pieza a pieza).
+           La esfera y las manecillas van en SVG para que, sin canvas y sin
+           JS, el hero siga siendo un reloj legible y no un hueco. -->
+      <div class="hero-reloj">
+        <canvas class="hero-canvas" id="mecanismo" aria-hidden="true"></canvas>
+
+      <svg class="hero-esfera" id="hero-esfera" viewBox="0 0 520 520" role="img"
+           aria-labelledby="esfera-titulo">
+        <title id="esfera-titulo">Esfera calada del despacho: se ve el mecanismo por debajo y las manecillas marcan la hora</title>
+        <g class="esfera-anillo">
+          <circle cx="260" cy="260" r="252" fill="none" stroke="var(--canto)" stroke-width="2"/>
+          <circle cx="260" cy="260" r="236" fill="none" stroke="var(--linea)" stroke-width="1"/>
+          <circle cx="260" cy="260" r="150" fill="none" stroke="var(--linea)" stroke-width="1"/>
+        </g>
+        <g class="esfera-ticks" id="esfera-ticks"></g>
+        <g class="esfera-indices" id="esfera-indices"></g>
+
+        <text class="esfera-firma" x="260" y="150" text-anchor="middle">Ouzande</text>
+        <text class="esfera-sello" x="260" y="176" text-anchor="middle">ABOGADOS</text>
+        <text class="esfera-pie" x="260" y="390" text-anchor="middle">FERROL · GALICIA</text>
+
+        <!-- Manecillas: el transform va en el ATRIBUTO y ningún selector CSS
+             les pone transform, o lo pisaría (trampa ya pagada). -->
+        <g id="aguja-hora" transform="rotate(300 260 260)">
+          <path d="M254 260 L256 152 L260 144 L264 152 L266 260 Z" fill="var(--acero)"/>
+        </g>
+        <g id="aguja-minuto" transform="rotate(60 260 260)">
+          <path d="M256.5 260 L258 96 L260 88 L262 96 L263.5 260 Z" fill="var(--acero)"/>
+        </g>
+        <g id="aguja-segundo" transform="rotate(0 260 260)">
+          <line x1="260" y1="292" x2="260" y2="106" stroke="var(--laton)" stroke-width="2.6"/>
+          <circle cx="260" cy="106" r="5" fill="none" stroke="var(--laton)" stroke-width="2.6"/>
+        </g>
+        <circle cx="260" cy="260" r="7" fill="var(--acero)"/>
+        <circle cx="260" cy="260" r="2.6" fill="var(--laton-sup)"/>
+        </svg>
+      </div>
+
+      <figcaption class="hero-hora">
+        <span class="hero-hora-dato" id="hero-hora">--:--:--</span>
+        <span class="hero-hora-nota">hora de Ferrol, corriendo</span>
+      </figcaption>
+    </figure>
+
+  </div>
+
+  <p class="hero-scroll" aria-hidden="true"><span>Baja y el tren se mueve</span></p>
+</section>
+
+<!-- ========================= CUADRANTE DE PLAZOS ========================= -->
+<section class="cuadrante" id="cuadrante">
+  <div class="container">
+    <header class="seccion-cabeza">
+      <p class="etiqueta">01 · El cuadrante</p>
+      <h2 class="titular-reveal">¿Cuánto te queda?</h2>
+      <p class="seccion-entrada">
+        Antes de contarte nada del despacho, esto. Dime qué te ha pasado y
+        cuándo, y te digo qué día se cierra la puerta. Es el mismo cálculo que
+        hacemos aquí el primer día de cada asunto, y es lo único de esta página
+        que de verdad importa antes de descolgar el teléfono.
+      </p>
+    </header>
+
+    <div class="cuadrante-caja">
+
+      <form class="cuadrante-mandos" id="cuadrante-form" novalidate>
+        <div class="campo">
+          <label for="c-supuesto">¿Qué ha pasado?</label>
+          <select id="c-supuesto">
+            <option value="despido" data-tipo="habiles" data-n="20">Me han despedido</option>
+            <option value="sancion" data-tipo="habiles" data-n="20">Me han sancionado en el trabajo</option>
+            <option value="cantidad" data-tipo="meses" data-n="12">Mi empresa me debe dinero</option>
+            <option value="alzada" data-tipo="meses" data-n="1">Me han notificado una resolución administrativa</option>
+            <option value="extranjeria" data-tipo="naturales" data-n="90">Se me ha caducado la tarjeta de residencia</option>
+            <option value="sucesiones" data-tipo="meses" data-n="6">Ha fallecido un familiar</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="c-fecha">¿Qué día? <span class="campo-nota" id="c-fecha-nota">Día del cese</span></label>
+          <input type="date" id="c-fecha">
+        </div>
+
+        <p class="cuadrante-explica" id="c-explica"></p>
+
+        <div class="cuadrante-aviso">
+          <p><strong>Es un cálculo orientativo.</strong> Cuenta los plazos
+          generales y descuenta sábados y domingos, pero no conoce los festivos
+          de Ferrol ni de Galicia, ni las suspensiones, interrupciones y
+          excepciones que tiene cualquier asunto de verdad. Sirve para saber si
+          hay prisa, no para decidir. Y esta es, además, una web de muestra.</p>
+        </div>
+      </form>
+
+      <div class="cuadrante-lectura">
+        <figure class="cuadrante-dial">
+          <svg viewBox="0 0 320 320" role="img" aria-labelledby="dial-titulo">
+            <title id="dial-titulo">Dial del plazo: el arco recorrido es el tiempo gastado y la aguja marca dónde estás</title>
+            <circle cx="160" cy="160" r="140" fill="none" stroke="var(--linea)" stroke-width="1.2"/>
+            <circle cx="160" cy="160" r="118" fill="none" stroke="var(--linea)" stroke-width="1"/>
+            <g id="dial-dientes"></g>
+            <circle id="dial-arco" cx="160" cy="160" r="129" fill="none"
+                    stroke="var(--laton-sup)" stroke-width="12" stroke-linecap="butt"
+                    pathLength="100" stroke-dasharray="0 100" transform="rotate(-90 160 160)"/>
+            <g id="dial-aguja" transform="rotate(0 160 160)">
+              <path d="M156 160 L158 52 L160 44 L162 52 L164 160 Z" fill="var(--acero)"/>
+            </g>
+            <circle cx="160" cy="160" r="8" fill="var(--acero)"/>
+            <text id="dial-num" class="dial-num" x="160" y="205" text-anchor="middle">—</text>
+            <text id="dial-unidad" class="dial-unidad" x="160" y="230" text-anchor="middle">elige una fecha</text>
+          </svg>
+        </figure>
+
+        <div class="cuadrante-salida" id="c-salida" role="status" aria-live="polite">
+          <p class="salida-linea"><span class="salida-clave">Estado</span><span class="salida-valor" id="c-estado">Sin fecha</span></p>
+          <p class="salida-linea"><span class="salida-clave">Empieza a contar</span><span class="salida-valor" id="c-inicio">—</span></p>
+          <p class="salida-linea"><span class="salida-clave">Último día</span><span class="salida-valor" id="c-fin">—</span></p>
+          <p class="salida-linea"><span class="salida-clave">Te quedan</span><span class="salida-valor" id="c-restan">—</span></p>
+        </div>
+
+        <a class="boton boton-solido boton-magnetico cuadrante-cta" href="#contacto" data-cursor="enlace">Que lo mire una abogada</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================== EL TREN DE RODAJE ======================== -->
+<section class="rodaje" id="rodaje">
+  <div class="rodaje-pin" id="rodaje-pin">
+    <div class="container rodaje-cabeza">
+      <div>
+        <p class="etiqueta etiqueta-clara">02 · El tren de rodaje</p>
+        <h2 class="rodaje-titular titular-reveal">Cinco ruedas y ninguna suelta</h2>
+      </div>
+      <p class="rodaje-entrada">
+        Un movimiento no corre porque una pieza vaya deprisa: corre porque cada
+        rueda encaja con la siguiente. Así se lleva aquí un asunto, de la
+        primera llamada al cobro.
+      </p>
+    </div>
+
+    <div class="rodaje-pista" id="rodaje-pista">
+      <article class="rueda">
+        <div class="rueda-cabeza">
+          <span class="rueda-num">01</span>
+          <svg class="rueda-svg" viewBox="0 0 120 120" aria-hidden="true" data-dientes="14"></svg>
+        </div>
+        <h3>Muelle real</h3>
+        <p class="rueda-nombre">La llamada</p>
+        <p class="rueda-texto">
+          Cuentas lo que ha pasado y traes el papel que tengas: la carta, la
+          notificación, el certificado. Cita en 48 horas laborables, y si el
+          plazo aprieta, el mismo día. Aquí no se cobra por escuchar.
+        </p>
+        <p class="rueda-dato"><span>48 h</span> para la primera cita</p>
+      </article>
+
+      <article class="rueda">
+        <div class="rueda-cabeza">
+          <span class="rueda-num">02</span>
+          <svg class="rueda-svg" viewBox="0 0 120 120" aria-hidden="true" data-dientes="18"></svg>
+        </div>
+        <h3>Rueda de centro</h3>
+        <p class="rueda-nombre">El cómputo</p>
+        <p class="rueda-texto">
+          Antes de estudiar el fondo se fija la fecha. Se mira el día de la
+          notificación, si el plazo va en hábiles o en naturales, los festivos
+          que caen dentro, y se anota el vencimiento en el calendario del
+          despacho. Esa fecha manda sobre todo lo demás.
+        </p>
+        <p class="rueda-dato"><span>Día 1</span> se fija el vencimiento</p>
+      </article>
+
+      <article class="rueda">
+        <div class="rueda-cabeza">
+          <span class="rueda-num">03</span>
+          <svg class="rueda-svg" viewBox="0 0 120 120" aria-hidden="true" data-dientes="22"></svg>
+        </div>
+        <h3>Rueda tercera</h3>
+        <p class="rueda-nombre">El escrito</p>
+        <p class="rueda-texto">
+          Papeleta de conciliación, demanda, recurso o alegaciones. Sale
+          firmado siete días antes del último día, no el último. Ese margen es
+          la diferencia entre presentar y presentar bien: da tiempo a que
+          llegue un documento que falta o a corregir un error de la otra parte.
+        </p>
+        <p class="rueda-dato"><span>−7 días</span> de margen sobre el límite</p>
+      </article>
+
+      <article class="rueda">
+        <div class="rueda-cabeza">
+          <span class="rueda-num">04</span>
+          <svg class="rueda-svg" viewBox="0 0 120 120" aria-hidden="true" data-dientes="16"></svg>
+        </div>
+        <h3>Escape</h3>
+        <p class="rueda-nombre">La vista</p>
+        <p class="rueda-texto">
+          El escape es la pieza que decide cuándo avanza el mecanismo y cuándo
+          se para. La vista es eso: una mañana concreta para la que se prepara
+          la prueba, se ordenan los documentos y se ensaya contigo lo que te
+          van a preguntar. Nadie entra a una sala sin saber qué va a pasar.
+        </p>
+        <p class="rueda-dato"><span>1 ensayo</span> previo, siempre</p>
+      </article>
+
+      <article class="rueda">
+        <div class="rueda-cabeza">
+          <span class="rueda-num">05</span>
+          <svg class="rueda-svg" viewBox="0 0 120 120" aria-hidden="true" data-dientes="12"></svg>
+        </div>
+        <h3>Volante</h3>
+        <p class="rueda-nombre">La ejecución</p>
+        <p class="rueda-texto">
+          Ganar no es cobrar. La sentencia firme abre otro plazo y otro
+          procedimiento, y es donde más asuntos se quedan por el camino. El
+          volante es lo último que se para: aquí el asunto no se cierra hasta
+          que el dinero está o consta que no lo hay.
+        </p>
+        <p class="rueda-dato"><span>Hasta el final</span> del expediente</p>
+      </article>
+    </div>
+
+    <div class="container rodaje-pie">
+      <div class="rodaje-barra" aria-hidden="true"><span id="rodaje-barra"></span></div>
+      <p class="rodaje-nota">Cinco fases · desplázate para recorrer el tren</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= CINTA DE PLAZOS ========================= -->
+<section class="cinta" aria-label="Plazos generales más habituales">
+  <div class="cinta-pista" id="cinta-pista">
+    <div class="cinta-grupo">
+      <span><b>20</b> días hábiles · demanda por despido</span><i aria-hidden="true">✦</i>
+      <span><b>20</b> días hábiles · impugnar una sanción</span><i aria-hidden="true">✦</i>
+      <span><b>1</b> año · reclamar cantidades al empresario</span><i aria-hidden="true">✦</i>
+      <span><b>1</b> mes · recurso de alzada y de reposición</span><i aria-hidden="true">✦</i>
+      <span><b>2</b> meses · recurso contencioso-administrativo</span><i aria-hidden="true">✦</i>
+      <span><b>90</b> días naturales · renovar la tarjeta caducada</span><i aria-hidden="true">✦</i>
+      <span><b>6</b> meses · liquidar el impuesto de sucesiones</span><i aria-hidden="true">✦</i>
+      <span><b>30</b> días naturales · contestar a la interpelación de la herencia</span><i aria-hidden="true">✦</i>
+    </div>
+    <div class="cinta-grupo" aria-hidden="true">
+      <span><b>20</b> días hábiles · demanda por despido</span><i>✦</i>
+      <span><b>20</b> días hábiles · impugnar una sanción</span><i>✦</i>
+      <span><b>1</b> año · reclamar cantidades al empresario</span><i>✦</i>
+      <span><b>1</b> mes · recurso de alzada y de reposición</span><i>✦</i>
+      <span><b>2</b> meses · recurso contencioso-administrativo</span><i>✦</i>
+      <span><b>90</b> días naturales · renovar la tarjeta caducada</span><i>✦</i>
+      <span><b>6</b> meses · liquidar el impuesto de sucesiones</span><i>✦</i>
+      <span><b>30</b> días naturales · contestar a la interpelación de la herencia</span><i>✦</i>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ MATERIAS ============================ -->
+<section class="materias" id="materias">
+  <div class="container">
+    <header class="seccion-cabeza seccion-cabeza-ancha">
+      <p class="etiqueta">03 · Materias</p>
+      <h2 class="titular-reveal">Cuatro complicaciones</h2>
+      <p class="seccion-entrada">
+        En relojería, una complicación es todo lo que el mecanismo hace además
+        de dar la hora: el calendario, la alarma, la reserva de marcha. Estas
+        son las cuatro del despacho. No hacemos más, y por eso las hacemos.
+      </p>
+    </header>
+
+    <ol class="pila" id="pila">
+      <li class="pila-item">
+        <article class="tarjeta">
+          <div class="tarjeta-texto">
+            <p class="tarjeta-num">01</p>
+            <h3>Laboral</h3>
+            <p class="tarjeta-entrada">
+              Despido, sanción, modificación de condiciones, reclamación de
+              cantidad, acoso, incapacidad. La materia con los plazos más
+              cortos del ordenamiento y la que peor perdona un descuido.
+            </p>
+            <ul class="tarjeta-lista">
+              <li>Papeleta de conciliación y demanda por despido</li>
+              <li>Impugnación de sanciones disciplinarias</li>
+              <li>Reclamaciones de salarios, horas y finiquitos</li>
+              <li>Modificación sustancial y movilidad geográfica</li>
+              <li>Incapacidad temporal y permanente frente al INSS</li>
+            </ul>
+          </div>
+          <div class="tarjeta-complicacion">
+            <svg viewBox="0 0 200 200" aria-hidden="true" class="complicacion" data-tipo="laboral"></svg>
+            <p class="complicacion-dato"><span>20</span> días hábiles<br><em>desde el día siguiente al despido</em></p>
+          </div>
+        </article>
+      </li>
+
+      <li class="pila-item">
+        <article class="tarjeta">
+          <div class="tarjeta-texto">
+            <p class="tarjeta-num">02</p>
+            <h3>Extranjería</h3>
+            <p class="tarjeta-entrada">
+              Aquí el plazo no solo cierra un recurso: cierra una vida
+              montada. Renovaciones, arraigo, reagrupación y, sobre todo,
+              lo que hay que hacer cuando llega una denegación.
+            </p>
+            <ul class="tarjeta-lista">
+              <li>Renovación de autorizaciones de residencia y trabajo</li>
+              <li>Arraigo social, laboral, familiar y de formación</li>
+              <li>Reagrupación familiar y tarjeta de familiar comunitario</li>
+              <li>Recursos frente a denegaciones y a expedientes de expulsión</li>
+              <li>Nacionalidad por residencia y su recurso contencioso</li>
+            </ul>
+          </div>
+          <div class="tarjeta-complicacion">
+            <svg viewBox="0 0 200 200" aria-hidden="true" class="complicacion" data-tipo="extranjeria"></svg>
+            <p class="complicacion-dato"><span>90</span> días naturales<br><em>margen para renovar tras caducar</em></p>
+          </div>
+        </article>
+      </li>
+
+      <li class="pila-item">
+        <article class="tarjeta">
+          <div class="tarjeta-texto">
+            <p class="tarjeta-num">03</p>
+            <h3>Sucesiones</h3>
+            <p class="tarjeta-entrada">
+              Una herencia se hereda entera: también las deudas y también el
+              reloj del impuesto, que empieza a correr el día del fallecimiento
+              aunque nadie de la familia esté para pensar en eso.
+            </p>
+            <ul class="tarjeta-lista">
+              <li>Declaración de herederos y aceptación de herencia</li>
+              <li>Aceptación a beneficio de inventario cuando hay deudas</li>
+              <li>Partición, cuaderno particional y extinción de condominio</li>
+              <li>Impuesto de sucesiones y plusvalía municipal</li>
+              <li>Legítimas, desheredación e impugnación de testamento</li>
+            </ul>
+          </div>
+          <div class="tarjeta-complicacion">
+            <svg viewBox="0 0 200 200" aria-hidden="true" class="complicacion" data-tipo="sucesiones"></svg>
+            <p class="complicacion-dato"><span>6</span> meses<br><em>para liquidar, prorrogables si se pide a tiempo</em></p>
+          </div>
+        </article>
+      </li>
+
+      <li class="pila-item">
+        <article class="tarjeta">
+          <div class="tarjeta-texto">
+            <p class="tarjeta-num">04</p>
+            <h3>Administración</h3>
+            <p class="tarjeta-entrada">
+              Multas, subvenciones, ayudas denegadas, silencio. Frente a la
+              Administración el plazo es del ciudadano y el silencio es de
+              ella: por eso conviene contestar antes de que conteste nadie.
+            </p>
+            <ul class="tarjeta-lista">
+              <li>Alegaciones y recursos en expedientes sancionadores</li>
+              <li>Recurso de alzada, reposición y extraordinario de revisión</li>
+              <li>Reclamación de responsabilidad patrimonial</li>
+              <li>Subvenciones: reintegros, justificaciones y denegaciones</li>
+              <li>Recurso contencioso-administrativo</li>
+            </ul>
+          </div>
+          <div class="tarjeta-complicacion">
+            <svg viewBox="0 0 200 200" aria-hidden="true" class="complicacion" data-tipo="administracion"></svg>
+            <p class="complicacion-dato"><span>1</span> mes<br><em>para la alzada desde la notificación</em></p>
+          </div>
+        </article>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- =========================== EL DESPACHO =========================== -->
+<section class="despacho" id="despacho">
+  <div class="container">
+    <header class="seccion-cabeza">
+      <p class="etiqueta">04 · Quién le da cuerda</p>
+      <h2 class="titular-reveal">Tres personas y un calendario</h2>
+      <p class="seccion-entrada">
+        Un despacho pequeño a propósito. Quien coge el teléfono es quien lleva
+        el asunto, y hay una persona cuyo único trabajo es que ninguna fecha se
+        pase. Es el puesto más raro y el más necesario de la casa.
+      </p>
+    </header>
+
+    <div class="personas">
+      <article class="persona">
+        <div class="persona-pieza">
+          <svg viewBox="0 0 160 160" aria-hidden="true" class="pieza" data-pieza="volante"></svg>
+        </div>
+        <h3>Uxía Ouzande Brión</h3>
+        <p class="persona-cargo">Abogada titular · Laboral y extranjería</p>
+        <p class="persona-texto">
+          Empezó en un despacho colectivo de Ferrol llevando despidos de
+          subcontratas del naval y acabó montando este en 2016. Lleva la sala:
+          juicios de despido, impugnaciones y los recursos de extranjería que
+          nadie quiere firmar porque tienen mal color. Atiende en castellano y
+          en galego.
+        </p>
+      </article>
+
+      <article class="persona">
+        <div class="persona-pieza">
+          <svg viewBox="0 0 160 160" aria-hidden="true" class="pieza" data-pieza="corona"></svg>
+        </div>
+        <h3>Brais Folgueira Recouso</h3>
+        <p class="persona-cargo">Abogado · Sucesiones y administrativo</p>
+        <p class="persona-texto">
+          Se ocupa de lo que se escribe: herencias, particiones, cuadernos,
+          alegaciones y recursos. Es el que se sienta con una familia que
+          acaba de enterrar a alguien y le explica, sin prisa, que hay seis
+          meses y que no pasa nada si se empieza la semana que viene.
+        </p>
+      </article>
+
+      <article class="persona">
+        <div class="persona-pieza">
+          <svg viewBox="0 0 160 160" aria-hidden="true" class="pieza" data-pieza="trinquete"></svg>
+        </div>
+        <h3>Noa Cimadevila Rei</h3>
+        <p class="persona-cargo">Responsable de plazos y notificaciones</p>
+        <p class="persona-texto">
+          Revisa cada mañana las notificaciones electrónicas, computa el
+          vencimiento de todo lo que entra y avisa a los siete, a los tres y al
+          día anterior. En cinco años no se ha pasado ninguno. Es el trinquete:
+          la pieza que impide que la rueda vuelva atrás.
+        </p>
+      </article>
+    </div>
+
+    <div class="marcador">
+      <div class="marcador-dato">
+        <p class="marcador-cifra" data-contador="2016">2016</p>
+        <p class="marcador-pie">año en que abrió el despacho</p>
+      </div>
+      <div class="marcador-dato">
+        <p class="marcador-cifra" data-contador="3">3</p>
+        <p class="marcador-pie">personas, y no se prevé crecer</p>
+      </div>
+      <div class="marcador-dato">
+        <p class="marcador-cifra" data-contador="48">48</p>
+        <p class="marcador-pie">horas máximas hasta la primera cita</p>
+      </div>
+      <div class="marcador-dato">
+        <p class="marcador-cifra" data-contador="7">7</p>
+        <p class="marcador-pie">días de margen con que sale cada escrito</p>
+      </div>
+    </div>
+    <p class="marcador-aviso">
+      Cifras de funcionamiento del despacho. No publicamos porcentajes de
+      asuntos ganados: dependen de con qué llega cada uno, y un número así no
+      le sirve a nadie para decidir.
+    </p>
+  </div>
+</section>
+
+<!-- =========================== HONORARIOS =========================== -->
+<section class="honorarios" id="honorarios">
+  <div class="container">
+    <header class="seccion-cabeza">
+      <p class="etiqueta">05 · Honorarios</p>
+      <h2 class="titular-reveal">El precio, antes de empezar</h2>
+      <p class="seccion-entrada">
+        Presupuesto cerrado por escrito en la primera cita y, si el asunto
+        cambia de tamaño por el camino, se vuelve a hablar antes de hacer nada.
+        Sin provisiones sorpresa.
+      </p>
+    </header>
+
+    <div class="tabla-caja">
+      <table class="tabla">
+        <caption class="sr">Honorarios orientativos del despacho, en euros, sin IVA</caption>
+        <thead>
+          <tr><th scope="col">Actuación</th><th scope="col">Desde</th><th scope="col">Qué incluye</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Primera consulta</th>
+            <td class="tabla-precio">50 €</td>
+            <td>Una hora, cómputo del plazo por escrito y una recomendación clara de hacer algo o de no hacer nada.</td>
+          </tr>
+          <tr>
+            <th scope="row">Demanda por despido</th>
+            <td class="tabla-precio">750 €</td>
+            <td>Papeleta de conciliación, demanda, vista y sentencia de instancia.</td>
+          </tr>
+          <tr>
+            <th scope="row">Expediente de extranjería</th>
+            <td class="tabla-precio">450 €</td>
+            <td>Preparación, presentación telemática, requerimientos y seguimiento hasta la resolución.</td>
+          </tr>
+          <tr>
+            <th scope="row">Recurso administrativo</th>
+            <td class="tabla-precio">350 €</td>
+            <td>Alegaciones o recurso de alzada o reposición, con estudio del expediente.</td>
+          </tr>
+          <tr>
+            <th scope="row">Tramitación de herencia</th>
+            <td class="tabla-precio">900 €</td>
+            <td>Declaración de herederos, inventario, cuaderno particional y liquidación del impuesto.</td>
+          </tr>
+          <tr>
+            <th scope="row">Iguala para empresa</th>
+            <td class="tabla-precio">180 €/mes</td>
+            <td>Consultas ilimitadas, revisión de contratos y cartas, y control de plazos de la empresa.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="honorarios-aviso">
+      Importes sin IVA y de muestra: <strong>no son orientativos de ningún
+      mercado real</strong> ni salen de baremo alguno. Esta es una web de
+      demostración de un despacho que no existe. No incluyen tasas, aranceles
+      de notaría ni registro, ni honorarios de procurador cuando es preceptivo.
+    </p>
+  </div>
+</section>
+
+<!-- ============================ PREGUNTAS ============================ -->
+<section class="preguntas" id="preguntas">
+  <div class="container preguntas-caja">
+    <header class="seccion-cabeza">
+      <p class="etiqueta">06 · Preguntas</p>
+      <h2 class="titular-reveal">Lo que más se pregunta</h2>
+    </header>
+
+    <div class="acordeon">
+      <details class="pregunta">
+        <summary><span class="pregunta-texto">¿Desde cuándo cuenta el plazo, desde que pasa o desde que me entero?</span></summary>
+        <div class="pregunta-cuerpo">
+          <p>Como regla, desde el día siguiente al que te notifican o al que
+          ocurre el hecho, no desde el día que lees el papel. Por eso la fecha
+          del sello o del acuse vale más que tu recuerdo, y por eso lo primero
+          que pedimos es ese documento y no el relato.</p>
+        </div>
+      </details>
+
+      <details class="pregunta">
+        <summary><span class="pregunta-texto">Creo que ya se me ha pasado. ¿Tiene sentido venir?</span></summary>
+        <div class="pregunta-cuerpo">
+          <p>Sí, y cuanto antes. Hay plazos que se suspenden, que se
+          interrumpen o que empezaron más tarde de lo que parece, y hay vías
+          distintas cuando la principal está cerrada. También puede ser que no
+          haya nada que hacer: en ese caso te lo decimos en la primera cita y
+          no se abre expediente.</p>
+        </div>
+      </details>
+
+      <details class="pregunta">
+        <summary><span class="pregunta-texto">¿Podéis atenderme en galego?</span></summary>
+        <div class="pregunta-cuerpo">
+          <p>Sí, en el despacho y en la sala. Los escritos se presentan en el
+          idioma que prefieras: los dos son oficiales y ninguno retrasa nada.</p>
+        </div>
+      </details>
+
+      <details class="pregunta">
+        <summary><span class="pregunta-texto">¿Hace falta ir presencialmente?</span></summary>
+        <div class="pregunta-cuerpo">
+          <p>La primera cita, mejor en persona: hay que ver los papeles
+          originales. A partir de ahí, casi todo se puede llevar por teléfono y
+          correo, y los expedientes de extranjería se presentan telemáticamente
+          sin que tengas que pedir día en ninguna oficina.</p>
+        </div>
+      </details>
+
+      <details class="pregunta">
+        <summary><span class="pregunta-texto">¿Qué pasa si perdemos?</span></summary>
+        <div class="pregunta-cuerpo">
+          <p>Se estudia el recurso y se te dice con franqueza si merece la
+          pena, contando el coste y el tiempo. Si la sentencia es firme y
+          desfavorable, el asunto se cierra con un informe escrito de por qué,
+          que es lo mínimo que se debe cuando alguien ha puesto dinero y meses.</p>
+        </div>
+      </details>
+
+      <details class="pregunta">
+        <summary><span class="pregunta-texto">¿Tenéis justicia gratuita?</span></summary>
+        <div class="pregunta-cuerpo">
+          <p>En esta web de muestra no se declara ninguna adscripción al turno
+          de oficio ni ningún número de colegiación, porque serían datos
+          inventados sobre un registro público real. En una web de verdad, aquí
+          iría el colegio, el número y si el despacho está o no en el turno.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CONTACTO ============================ -->
+<section class="contacto" id="contacto">
+  <div class="container">
+    <header class="seccion-cabeza">
+      <p class="etiqueta etiqueta-clara">07 · Contacto</p>
+      <h2 class="titular-reveal">Dime la fecha y te digo la prisa</h2>
+    </header>
+
+    <div class="contacto-rejilla">
+
+      <form class="formulario" id="formulario" novalidate>
+        <div class="campo">
+          <label for="f-nombre">Nombre</label>
+          <input type="text" id="f-nombre" name="nombre" autocomplete="name" placeholder="Cómo te llamas">
+        </div>
+        <div class="campo">
+          <label for="f-tel">Teléfono</label>
+          <input type="tel" id="f-tel" name="telefono" autocomplete="tel" placeholder="Para devolverte la llamada">
+        </div>
+        <div class="campo">
+          <label for="f-fecha">Fecha del papel que has recibido <span class="campo-nota">si la hay</span></label>
+          <input type="date" id="f-fecha" name="fecha">
+        </div>
+        <div class="campo">
+          <label for="f-asunto">¿Qué ha pasado?</label>
+          <textarea id="f-asunto" name="asunto" rows="4" placeholder="Cuatro líneas bastan"></textarea>
+        </div>
+        <div class="campo campo-check">
+          <input type="checkbox" id="f-ok" name="ok">
+          <label for="f-ok">He leído el <a href="legal.html">aviso legal</a> y acepto que me contactéis.</label>
+        </div>
+        <button class="boton boton-solido boton-magnetico" type="submit" data-cursor="enlace">Enviar</button>
+        <p class="formulario-respuesta" id="formulario-respuesta" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="contacto-datos">
+        <ul>
+          <li>
+            <span class="dato-clave">Despacho</span>
+            <span class="dato-valor">Rúa da Áncora, 21, 1º izq.<br>15402 Ferrol (A Coruña)</span>
+          </li>
+          <li>
+            <span class="dato-clave">Teléfono</span>
+            <span class="dato-valor"><a href="tel:+34981000000" data-cursor="enlace">981 00 00 00</a></span>
+          </li>
+          <li>
+            <span class="dato-clave">Aviso de plazo</span>
+            <span class="dato-valor"><a href="tel:+34600000000" data-cursor="enlace">600 00 00 00</a><br><em>solo si te vence esta semana</em></span>
+          </li>
+          <li>
+            <span class="dato-clave">Correo</span>
+            <span class="dato-valor"><a href="mailto:contacto@ouzandeabogados.example" data-cursor="enlace">contacto@ouzandeabogados.example</a></span>
+          </li>
+          <li>
+            <span class="dato-clave">Horario</span>
+            <span class="dato-valor">Lunes a jueves, 9–14 y 16–19<br>Viernes, 9–14</span>
+          </li>
+        </ul>
+
+        <div class="mapa" id="mapa-caja">
+          <button class="boton boton-hueco" id="mapa-boton" type="button" data-cursor="enlace">Ver el mapa</button>
+          <p class="mapa-nota">El mapa de Google no se carga hasta que lo pides: así esta página no pone ninguna cookie de terceros por su cuenta.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="container pie-caja">
+    <div class="pie-marca">
+      <svg class="marca-icono" viewBox="0 0 48 48" aria-hidden="true">
+        <path fill="currentColor" fill-rule="evenodd" d="M24.00 7.40L31.27 5.15L29.97 8.51L31.20 9.04L38.73 10.17L36.10 12.64L36.98 13.65L43.27 17.93L39.83 19.01L40.18 20.31L43.99 26.89L40.43 26.38L40.18 27.69L40.76 35.28L37.77 33.27L36.98 34.35L34.20 41.43L32.39 38.33L31.20 38.96L25.63 44.13L25.34 40.55L24.00 40.60L16.73 42.85L18.03 39.49L16.80 38.96L9.27 37.83L11.90 35.36L11.02 34.35L4.73 30.07L8.17 28.99L7.82 27.69L4.01 21.11L7.57 21.62L7.82 20.31L7.24 12.72L10.23 14.73L11.02 13.65L13.80 6.57L15.61 9.67L16.80 9.04L22.37 3.87L22.66 7.45ZM32.4 24A8.4 8.4 0 1 0 15.6 24A8.4 8.4 0 1 0 32.4 24Z"/>
+        <path class="marca-uneta" fill="var(--acero)" d="M42.6 1.7 45.8 4.9 36.2 13.3 34.2 11.3Z"/>
+        <circle class="marca-uneta" fill="var(--acero)" cx="44.2" cy="3.3" r="2"/>
+        <circle cx="24" cy="24" r="4.4" fill="var(--rubi)"/>
+      </svg>
+      <p><strong>Ouzande Abogados</strong><br>Rúa da Áncora, 21, 1º izq. · 15402 Ferrol</p>
+    </div>
+
+    <nav class="pie-nav" aria-label="Pie">
+      <ul>
+        <li><a href="#cuadrante">Plazos</a></li>
+        <li><a href="#materias">Materias</a></li>
+        <li><a href="#honorarios">Honorarios</a></li>
+        <li><a href="legal.html">Aviso legal y privacidad</a></li>
+      </ul>
+    </nav>
+
+    <div class="pie-avisos">
+      <p class="pie-demo">
+        <strong>Sitio de demostración.</strong> Ouzande Abogados es un negocio
+        ficticio; los datos, las personas, los honorarios y las opiniones son
+        de muestra.
+      </p>
+      <p class="pie-legal">
+        Los plazos citados son los generales del ordenamiento español y se
+        muestran a título orientativo. Nada de esta página es asesoramiento
+        jurídico ni crea relación profesional alguna.
+      </p>
+      <p class="pie-copy">© 2026 · Plantilla «Trinquete» para WEBS NEGOCIOS</p>
+    </div>
+  </div>
+</footer>
+
+<div class="cookie-banner" id="cookie-banner" hidden role="dialog" aria-live="polite" aria-label="Aviso de cookies">
+  <p>Esta web solo usa almacenamiento local para recordar que has cerrado este
+  aviso. No hay analítica ni cookies de terceros, y el mapa únicamente se carga
+  si lo pides tú. <a href="legal.html">Más detalle</a>.</p>
+  <button class="boton boton-solido" id="cookie-ok" type="button">Entendido</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>

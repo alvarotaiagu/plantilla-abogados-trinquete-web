@@ -1,0 +1,109 @@
+{
+  "base": "http://127.0.0.1:8979/plantilla-abogados-trinquete-web/",
+  "fecha": "2026-09-20T18:51:36.849Z",
+  "pasos": [
+    {
+      "nombre": "la cortina acaba retirada (normal)",
+      "ok": true
+    },
+    {
+      "nombre": "el aviso de cookies aparece",
+      "ok": true
+    },
+    {
+      "nombre": "el botón de cookies lo cierra de verdad",
+      "ok": true
+    },
+    {
+      "nombre": "sin desbordamiento horizontal (escritorio)",
+      "ok": true,
+      "detalle": "scrollWidth 1440 vs innerWidth 1440"
+    },
+    {
+      "nombre": "el cuadrante detecta un plazo vencido",
+      "ok": true,
+      "detalle": "estado: Fuera de plazo"
+    },
+    {
+      "nombre": "el cuadrante calcula un plazo en curso",
+      "ok": true,
+      "detalle": "estado: En plazo"
+    },
+    {
+      "nombre": "el formulario responde",
+      "ok": true,
+      "detalle": "Formulario de muestra: no se ha enviado nada. En una web real, aquí entraría el acuse de recibo con la fecha y la hora."
+    },
+    {
+      "nombre": "no hay iframe de mapa antes del clic",
+      "ok": true
+    },
+    {
+      "nombre": "el mapa se inserta al pulsar",
+      "ok": true
+    },
+    {
+      "nombre": "sin marcadores pendientes ni relleno",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "nombre": "consola limpia en escritorio",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "nombre": "consola limpia en las páginas interiores",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "nombre": "sin desbordamiento horizontal (móvil)",
+      "ok": true,
+      "detalle": "scrollWidth 390 vs innerWidth 390"
+    },
+    {
+      "nombre": "el menú móvil abre y cierra",
+      "ok": true,
+      "detalle": "abierto=true cerrado=false"
+    },
+    {
+      "nombre": "consola limpia en móvil",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "nombre": "la cortina se retira también sin GSAP",
+      "ok": true
+    },
+    {
+      "nombre": "el titular del hero se ve sin GSAP",
+      "ok": true
+    },
+    {
+      "nombre": "sin errores ajenos al CDN tumbado",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "nombre": "la cortina se retira con movimiento reducido",
+      "ok": true
+    },
+    {
+      "nombre": "el reloj marca la hora con movimiento reducido",
+      "ok": true,
+      "detalle": "20:52:38"
+    },
+    {
+      "nombre": "el cuadrante sigue calculando con movimiento reducido",
+      "ok": true,
+      "detalle": "20 días naturales"
+    },
+    {
+      "nombre": "consola limpia con movimiento reducido",
+      "ok": true,
+      "detalle": ""
+    }
+  ],
+  "fallos": []
+}
