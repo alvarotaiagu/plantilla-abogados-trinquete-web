@@ -279,12 +279,18 @@
     var ok = document.getElementById('cookie-ok');
     if (!banner || !ok) return;
     var CLAVE = 'ouzande-cookies';
+    // La clase avisa al control de maqueta de que se aparte: en móvil el
+    // aviso ocupa todo el ancho y se le montaría encima. El aviso va primero.
+    function mostrar(v) {
+      banner.hidden = !v;
+      raiz.classList.toggle('con-aviso-cookies', v);
+    }
     try {
-      if (!localStorage.getItem(CLAVE)) banner.hidden = false;
-    } catch (e) { banner.hidden = false; }
+      if (!localStorage.getItem(CLAVE)) mostrar(true);
+    } catch (e) { mostrar(true); }
     ok.addEventListener('click', function () {
       try { localStorage.setItem(CLAVE, '1'); } catch (e) {}
-      banner.hidden = true;
+      mostrar(false);
     });
   })();
 
@@ -1163,6 +1169,111 @@
       });
     }, { threshold: .2 });
     grupos.forEach(function (g, i) { setTimeout(function () { io.observe(g); }, i * 8); });
+  })();
+
+  /* ---------------- La escala comparativa de plazos ----------------
+     Cuatro diales redondos se parecen todos entre sí: no dejan ver que
+     veinte días hábiles es una nada al lado de seis meses. Esto es lo que
+     ocupa su sitio en la versión sobria: las cuatro materias medidas con la
+     misma vara, con la de la ficha marcada.
+
+     Los días salen de data-dias en el <li>, no de una tabla aquí dentro: si
+     el dato viviera en el script, cambiar un plazo obligaría a tocar dos
+     sitios y uno se quedaría viejo. */
+  (function initEscala() {
+    var items = document.querySelectorAll('.pila-item[data-dias]');
+    if (items.length < 2) return;
+
+    var materias = [];
+    items.forEach(function (li) {
+      var h3 = li.querySelector('h3');
+      materias.push({
+        nombre: h3 ? h3.textContent.trim() : '',
+        dias: parseInt(li.getAttribute('data-dias'), 10) || 0,
+        rotulo: li.getAttribute('data-rotulo') || ''
+      });
+    });
+    var tope = materias.reduce(function (m, x) { return Math.max(m, x.dias); }, 1);
+
+    items.forEach(function (li, propio) {
+      var caja = li.querySelector('.tarjeta-complicacion');
+      if (!caja) return;
+
+      var escala = document.createElement('div');
+      escala.className = 'escala';
+
+      var titulo = document.createElement('p');
+      titulo.className = 'escala-titulo';
+      titulo.textContent = 'Los cuatro plazos a la misma vara';
+      escala.appendChild(titulo);
+
+      var lista = document.createElement('ul');
+      materias.forEach(function (m, i) {
+        var fila = document.createElement('li');
+        fila.className = 'escala-fila' + (i === propio ? ' activa' : '');
+
+        var nombre = document.createElement('span');
+        nombre.className = 'escala-nombre';
+        nombre.textContent = m.nombre;
+
+        var pista = document.createElement('span');
+        pista.className = 'escala-pista';
+        var barra = document.createElement('i');
+        // Ancho en % sobre la pista: barra recta y sin viewBox que estirar.
+        barra.style.width = Math.max((m.dias / tope) * 100, 2).toFixed(1) + '%';
+        pista.appendChild(barra);
+
+        var cifra = document.createElement('span');
+        cifra.className = 'escala-cifra';
+        cifra.textContent = m.rotulo;
+
+        fila.appendChild(nombre);
+        fila.appendChild(pista);
+        fila.appendChild(cifra);
+        lista.appendChild(fila);
+      });
+      escala.appendChild(lista);
+
+      var pie = document.createElement('p');
+      pie.className = 'escala-pie';
+      pie.textContent = 'En días naturales aproximados, para poder compararlos: los hábiles y los meses no se miden igual.';
+      escala.appendChild(pie);
+
+      caja.appendChild(escala);
+    });
+  })();
+
+  /* ---------------- El control de maqueta ----------------
+     NO ES PARTE DEL SITIO. Es un mando para enseñar la misma web con dos
+     densidades visuales delante de un cliente:
+       · «Mecanismo»: la rueda dentada aparece en diez sitios.
+       · «Sobria»:    aparece en cuatro, y donde estaba el dibujo manda el
+                      dato (el número del tren, la escala de plazos).
+     Al entregar a un despacho real se borra esta función, el bloque
+     .maqueta del CSS, el <div id="maqueta"> y la bandera del <head>. */
+  (function initMaqueta() {
+    var caja = document.getElementById('maqueta');
+    var bMec = document.getElementById('maqueta-mecanismo');
+    var bSob = document.getElementById('maqueta-sobria');
+    if (!caja || !bMec || !bSob) return;
+    var CLAVE = 'ouzande-maqueta';
+
+    caja.hidden = false;   // sin JS no se enseña: no haría nada
+
+    function pintar(sobria, guardar) {
+      raiz.classList.toggle('maqueta-sobria', sobria);
+      bMec.setAttribute('aria-pressed', String(!sobria));
+      bSob.setAttribute('aria-pressed', String(sobria));
+      if (guardar) { try { localStorage.setItem(CLAVE, sobria ? 'sobria' : 'mecanismo'); } catch (e) {} }
+      // Las tarjetas cambian de alto al cambiar de versión: sin refrescar,
+      // el anclaje del tren y la pila se quedan midiendo lo de antes.
+      if (gsapListo) setTimeout(function () { ScrollTrigger.refresh(); }, 60);
+      window.dispatchEvent(new Event('resize'));
+    }
+
+    pintar(raiz.classList.contains('maqueta-sobria'), false);
+    bMec.addEventListener('click', function () { pintar(false, true); });
+    bSob.addEventListener('click', function () { pintar(true, true); });
   })();
 
   /* ---------------- Formulario de muestra ---------------- */

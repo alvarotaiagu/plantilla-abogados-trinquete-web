@@ -92,6 +92,10 @@ async function irA(page, id) {
     // Cookies
     const bannerVisible = await p.isVisible('#cookie-banner');
     anota('el aviso de cookies aparece', bannerVisible);
+
+    // El control de maqueta cede el sitio al aviso legal.
+    anota('el control de maqueta se aparta con el aviso de cookies',
+      !(await p.isVisible('#maqueta')));
     if (bannerVisible) {
       await p.screenshot({ path: path.join(CAPS, 'escritorio-02-cookies.png') });
       await p.click('#cookie-ok');
@@ -100,6 +104,7 @@ async function irA(page, id) {
       anota('el botón de cookies lo cierra de verdad', cerrado);
       await p.screenshot({ path: path.join(CAPS, 'escritorio-02b-cookies-cerrado.png') });
     }
+    anota('el control de maqueta aparece al cerrar el aviso', await p.isVisible('#maqueta'));
 
     // 9. Anchura real del documento
     const medidas = await p.evaluate(() => ({
@@ -158,6 +163,44 @@ async function irA(page, id) {
     const despuesIframe = await p.$$eval('#mapa-caja iframe', (n) => n.length);
     anota('el mapa se inserta al pulsar', despuesIframe === 1);
     await p.screenshot({ path: path.join(CAPS, 'escritorio-mapa-cargado.png') });
+
+    // Las dos densidades de la maqueta. Va al final del bloque para no
+    // contaminar las capturas anteriores, y se vuelve a «mecanismo».
+    await p.click('#maqueta-sobria');
+    await p.waitForTimeout(700);
+    const sobria = await p.evaluate(() => {
+      const dial = document.querySelector('.complicacion');
+      const esc = document.querySelector('.escala');
+      const rueda = document.querySelector('.rueda-svg');
+      const piezas = Array.from(document.querySelectorAll('.persona-pieza'));
+      const visible = (el) => !!el && getComputedStyle(el).display !== 'none';
+      return {
+        dialOculto: !visible(dial),
+        escalaVisible: visible(esc),
+        ruedaOculta: !visible(rueda),
+        piezasVisibles: piezas.filter(visible).length,
+        barras: document.querySelectorAll('.escala-fila').length,
+        sw: document.documentElement.scrollWidth,
+        iw: window.innerWidth
+      };
+    });
+    anota('versión sobria: los diales de materias se retiran', sobria.dialOculto);
+    anota('versión sobria: la escala comparativa ocupa su sitio',
+      sobria.escalaVisible && sobria.barras === 16, sobria.barras + ' filas de barra (4 por tarjeta)');
+    anota('versión sobria: las ruedas del tren se retiran', sobria.ruedaOculta);
+    anota('versión sobria: solo queda la pieza que el texto nombra',
+      sobria.piezasVisibles === 1, sobria.piezasVisibles + ' pieza(s) visible(s)');
+    anota('versión sobria: sin desbordamiento horizontal',
+      sobria.sw <= sobria.iw + 1, 'scrollWidth ' + sobria.sw + ' vs innerWidth ' + sobria.iw);
+
+    for (const id of ['rodaje', 'materias', 'despacho']) {
+      await irA(p, id);
+      await p.screenshot({ path: path.join(CAPS, 'escritorio-sobria-' + id + '.png') });
+    }
+    await p.click('#maqueta-mecanismo');
+    await p.waitForTimeout(700);
+    anota('se puede volver a la versión mecanismo',
+      await p.evaluate(() => !document.documentElement.classList.contains('maqueta-sobria')));
 
     // 8. Marcadores pendientes
     // textContent, no innerText: innerText aplica text-transform y el

@@ -1,6 +1,6 @@
 {
-  "base": "https://alvarotaiagu.github.io/plantilla-abogados-trinquete-web/",
-  "fecha": "2026-09-20T18:54:56.423Z",
+  "base": "http://127.0.0.1:8979/plantilla-abogados-trinquete-web/",
+  "fecha": "2026-09-20T21:48:04.138Z",
   "pasos": [
     {
       "nombre": "la cortina acaba retirada (normal)",
@@ -11,7 +11,15 @@
       "ok": true
     },
     {
+      "nombre": "el control de maqueta se aparta con el aviso de cookies",
+      "ok": true
+    },
+    {
       "nombre": "el botón de cookies lo cierra de verdad",
+      "ok": true
+    },
+    {
+      "nombre": "el control de maqueta aparece al cerrar el aviso",
       "ok": true
     },
     {
@@ -40,6 +48,33 @@
     },
     {
       "nombre": "el mapa se inserta al pulsar",
+      "ok": true
+    },
+    {
+      "nombre": "versión sobria: los diales de materias se retiran",
+      "ok": true
+    },
+    {
+      "nombre": "versión sobria: la escala comparativa ocupa su sitio",
+      "ok": true,
+      "detalle": "16 filas de barra (4 por tarjeta)"
+    },
+    {
+      "nombre": "versión sobria: las ruedas del tren se retiran",
+      "ok": true
+    },
+    {
+      "nombre": "versión sobria: solo queda la pieza que el texto nombra",
+      "ok": true,
+      "detalle": "1 pieza(s) visible(s)"
+    },
+    {
+      "nombre": "versión sobria: sin desbordamiento horizontal",
+      "ok": true,
+      "detalle": "scrollWidth 1440 vs innerWidth 1440"
+    },
+    {
+      "nombre": "se puede volver a la versión mecanismo",
       "ok": true
     },
     {
@@ -92,7 +127,7 @@
     {
       "nombre": "el reloj marca la hora con movimiento reducido",
       "ok": true,
-      "detalle": "20:55:59"
+      "detalle": "23:49:11"
     },
     {
       "nombre": "el cuadrante sigue calculando con movimiento reducido",

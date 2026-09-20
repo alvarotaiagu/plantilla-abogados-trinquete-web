@@ -684,6 +684,98 @@ html.cursor-activo, html.cursor-activo a, html.cursor-activo button { cursor: no
 }
 .cookie-banner p { margin: 0; flex: 1 1 18rem; font-size: .86rem; color: var(--acero-medio); }
 
+/* ======================== VERSIÓN SOBRIA ========================
+   La misma web con la rueda dentada en cuatro sitios en vez de en diez.
+   No se quita ninguna sección ni ningún dato: donde estaba el dibujo manda
+   el número. Se enciende con html.maqueta-sobria desde el control de
+   maqueta, que NO viaja al sitio de un cliente (ver README).
+
+   Qué desaparece y qué ocupa su sitio:
+   · las cinco ruedecitas del tren  → el número de fase, en grande
+   · los cuatro diales de materias  → la escala comparativa de plazos
+   · dos de las tres piezas         → nada; se queda la de Noa, que es la
+                                      única que el texto nombra
+   · la rueda del cursor            → un aro liso
+   Se quedan: el logotipo, la cortina, el dial de avance, el mecanismo del
+   hero y el cuadrante, que son los sitios donde la rueda significa algo. */
+
+html.maqueta-sobria .rueda-svg { display: none; }
+html.maqueta-sobria .rueda-cabeza { margin-bottom: .7rem; }
+html.maqueta-sobria .rueda-num { font-size: 2.6rem; line-height: 1; letter-spacing: .02em; }
+
+html.maqueta-sobria .complicacion { display: none; }
+html.maqueta-sobria .tarjeta-complicacion { text-align: left; }
+html.maqueta-sobria .complicacion-dato span { font-size: 3.4rem; }
+
+/* La pieza de cada persona se va salvo la última: de Noa el texto dice
+   «es el trinquete», así que ahí el dibujo ilustra una frase que existe. */
+html.maqueta-sobria .persona:not(:last-child) .persona-pieza { display: none; }
+
+html.maqueta-sobria #cursor-rueda > g { display: none; }
+
+/* -------------------- La escala comparativa de plazos --------------------
+   Solo se ve en la versión sobria. Barras rectas con el ancho en %: nada de
+   stroke-dasharray sobre un viewBox estirado, que se rompe. */
+.escala { display: none; }
+html.maqueta-sobria .escala { display: block; margin-top: 1.4rem; }
+.escala-titulo {
+  font-family: var(--fuente-tecnica); font-size: .58rem; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--acero-medio);
+  margin: 0 0 .7rem; padding-bottom: .55rem; border-bottom: 1px solid var(--linea);
+}
+.escala-fila {
+  display: grid; grid-template-columns: 6.6rem minmax(0, 1fr) 7.4rem;
+  align-items: center; gap: .6rem; padding: .3rem 0;
+}
+.escala-nombre { font-size: .84rem; color: var(--acero-medio); }
+.escala-pista { display: block; height: 9px; background: var(--linea); }
+.escala-pista i { display: block; height: 100%; background: var(--acero-medio); }
+.escala-cifra {
+  font-family: var(--fuente-tecnica); font-size: .62rem; color: var(--acero-medio);
+  text-align: right; font-variant-numeric: tabular-nums;
+}
+.escala-fila.activa .escala-nombre { color: var(--acero); font-weight: 600; }
+.escala-fila.activa .escala-pista i { background: var(--laton-sup); }
+.escala-fila.activa .escala-cifra { color: var(--laton); font-weight: 700; }
+.escala-pie {
+  margin: .8rem 0 0; font-size: .74rem; line-height: 1.5; color: var(--acero-medio);
+}
+
+/* -------------------------- Control de maqueta --------------------------
+   BLOQUE DE DEMOSTRACIÓN: se borra entero al entregar a un cliente real.
+   Va deliberadamente con pinta de herramienta y no de parte del sitio. */
+.maqueta { display: none; }
+.maqueta:not([hidden]) {
+  display: flex; position: fixed; z-index: 840;
+  left: 1rem; bottom: 1rem;
+  align-items: center; gap: .6rem;
+  background: var(--caja); border: 1px solid var(--caja-linea);
+  border-radius: 999px; padding: .4rem .5rem .4rem .9rem;
+  box-shadow: 0 18px 40px -26px rgba(20, 23, 28, .7);
+}
+.maqueta-rotulo {
+  margin: 0; font-family: var(--fuente-tecnica); font-size: .52rem;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--niebla);
+}
+.maqueta-botones { display: flex; gap: .3rem; }
+.maqueta-botones button {
+  font-family: var(--fuente-tecnica); font-size: .6rem; letter-spacing: .1em;
+  text-transform: uppercase; cursor: pointer;
+  background: transparent; color: var(--niebla);
+  border: 1px solid var(--caja-linea); border-radius: 999px;
+  padding: .38rem .8rem; transition: background .2s, color .2s, border-color .2s;
+}
+.maqueta-botones button:hover { color: var(--hueso); border-color: var(--niebla); }
+.maqueta-botones button[aria-pressed="true"] {
+  background: var(--laton-claro); color: var(--caja); border-color: var(--laton-claro);
+}
+.maqueta:not([hidden]) :focus-visible { outline-color: var(--laton-claro); }
+
+/* Mientras el aviso de cookies está en pantalla, el mando se aparta: en
+   móvil el aviso ocupa todo el ancho y se le montaría encima. El aviso
+   legal va primero. */
+html.con-aviso-cookies .maqueta:not([hidden]) { display: none; }
+
 /* ------------------------- Páginas interiores ------------------------- */
 .pagina { padding: calc(var(--cabecera-alto) + 4rem) 0 5rem; }
 .pagina-caja { max-width: 48rem; }
@@ -728,6 +820,15 @@ html.cursor-activo, html.cursor-activo a, html.cursor-activo button { cursor: no
 
 @media (max-width: 720px) {
   :root { --cabecera-alto: 66px; }
+  .escala-fila { grid-template-columns: 5.4rem minmax(0, 1fr); row-gap: .1rem; }
+  .escala-cifra { grid-column: 2; text-align: left; }
+  .maqueta:not([hidden]) {
+    left: .7rem; right: .7rem; bottom: .7rem;
+    flex-direction: column; align-items: stretch; gap: .45rem;
+    border-radius: var(--radio); padding: .65rem .75rem;
+  }
+  .maqueta-botones button { flex: 1; }
+  html.maqueta-sobria .complicacion-dato span { font-size: 2.6rem; }
   .hero-datos { grid-template-columns: 1fr; }
   .marca-nombre { font-size: 1.24rem; }
   .avance-cifra { display: none; }

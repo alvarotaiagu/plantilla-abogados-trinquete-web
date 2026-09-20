@@ -40,6 +40,15 @@
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!reduce) document.documentElement.classList.add('js-motion');
     document.documentElement.classList.add('js-si');
+    /* Densidad visual elegida en el control de maqueta. Se resuelve aquí,
+       antes de pintar, o la página arrancaría en una versión y saltaría a
+       la otra. CONTROL DE DEMOSTRACIÓN: ver README, "El control de
+       maqueta", para quitarlo al entregar a un cliente. */
+    try {
+      if (localStorage.getItem('ouzande-maqueta') === 'sobria') {
+        document.documentElement.classList.add('maqueta-sobria');
+      }
+    } catch (e) {}
   })();
 </script>
 
@@ -504,7 +513,7 @@
     </header>
 
     <ol class="pila" id="pila">
-      <li class="pila-item">
+      <li class="pila-item" data-dias="28" data-rotulo="20 días hábiles">
         <article class="tarjeta">
           <div class="tarjeta-texto">
             <p class="tarjeta-num">01</p>
@@ -529,7 +538,7 @@
         </article>
       </li>
 
-      <li class="pila-item">
+      <li class="pila-item" data-dias="90" data-rotulo="90 días naturales">
         <article class="tarjeta">
           <div class="tarjeta-texto">
             <p class="tarjeta-num">02</p>
@@ -554,7 +563,7 @@
         </article>
       </li>
 
-      <li class="pila-item">
+      <li class="pila-item" data-dias="183" data-rotulo="6 meses">
         <article class="tarjeta">
           <div class="tarjeta-texto">
             <p class="tarjeta-num">03</p>
@@ -579,7 +588,7 @@
         </article>
       </li>
 
-      <li class="pila-item">
+      <li class="pila-item" data-dias="30" data-rotulo="1 mes">
         <article class="tarjeta">
           <div class="tarjeta-texto">
             <p class="tarjeta-num">04</p>
@@ -933,10 +942,25 @@
   </div>
 </footer>
 
+<!-- ===================== CONTROL DE MAQUETA =====================
+     Esto NO es parte del sitio: es un mando para enseñar la misma web con
+     dos densidades visuales distintas delante de un cliente. Al entregar a
+     un despacho real se borra este bloque, el bloque .maqueta del CSS, la
+     función initMaqueta() de main.js y la bandera del <head>. Viene con
+     [hidden]: sin JS no aparece, porque no haría nada. -->
+<div class="maqueta" id="maqueta" hidden>
+  <p class="maqueta-rotulo">Maqueta · densidad visual</p>
+  <div class="maqueta-botones" role="group" aria-label="Densidad visual de la maqueta">
+    <button type="button" id="maqueta-mecanismo" aria-pressed="true">Mecanismo</button>
+    <button type="button" id="maqueta-sobria" aria-pressed="false">Sobria</button>
+  </div>
+</div>
+
 <div class="cookie-banner" id="cookie-banner" hidden role="dialog" aria-live="polite" aria-label="Aviso de cookies">
-  <p>Esta web solo usa almacenamiento local para recordar que has cerrado este
-  aviso. No hay analítica ni cookies de terceros, y el mapa únicamente se carga
-  si lo pides tú. <a href="legal.html">Más detalle</a>.</p>
+  <p>Esta web solo usa almacenamiento local para recordar dos cosas: que has
+  cerrado este aviso y con qué densidad visual estás viendo la maqueta. No hay
+  analítica ni cookies de terceros, y el mapa únicamente se carga si lo pides
+  tú. <a href="legal.html">Más detalle</a>.</p>
   <button class="boton boton-solido" id="cookie-ok" type="button">Entendido</button>
 </div>
 

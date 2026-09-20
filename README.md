@@ -46,6 +46,56 @@ las que el plazo es el drama real: llegar tarde no se arregla teniendo razón.
 
 ---
 
+## El control de maqueta: dos densidades de la misma web
+
+Abajo a la izquierda hay un mando con dos botones, **Mecanismo** y
+**Sobria**. No es parte del sitio: es una herramienta para enseñar la misma
+web con dos niveles de adorno delante de un cliente y que elija.
+
+|  | Mecanismo | Sobria |
+|---|---|---|
+| La rueda dentada sale en… | 10 sitios | 4 sitios |
+| Tren de rodaje | ruedecita por tarjeta | el número de fase, en grande |
+| Materias | un dial por materia | la escala comparativa de plazos |
+| Personas | tres piezas de reloj | solo la de Noa, que el texto nombra |
+| Cursor | rueda dentada que gira | aro liso |
+
+En las dos versiones **se ven las mismas secciones y los mismos datos**. Lo
+que cambia es quién manda: el dibujo o el número. En la portada, la cortina,
+el dial de avance y el cuadrante la rueda se queda en las dos, porque ahí
+significa algo.
+
+La versión sobria además **añade** algo que la otra no tiene: los cuatro
+plazos medidos con la misma vara, uno debajo de otro, con el de la ficha en
+latón. Cuatro diales redondos se parecen todos entre sí; cuatro barras dejan
+ver de un vistazo que veinte días hábiles es una nada al lado de seis meses.
+Los días salen de `data-dias` en cada `<li class="pila-item">` y el gráfico
+los lee de ahí, así que el dato no está duplicado en el script.
+
+### Cómo quitarlo al entregar a un cliente real
+
+**Esto hay que hacerlo siempre.** Una web de un despacho no puede llevar un
+botón que le cambie el diseño al visitante. Se borran cuatro cosas y la web
+se queda en la versión que estuviera elegida por defecto:
+
+1. `index.html`: el bloque `<div class="maqueta" id="maqueta">` (va marcado
+   con un comentario) y, en el `<script>` del `<head>`, el `try` que lee
+   `ouzande-maqueta`.
+2. `js/main.js`: la función `initMaqueta()`.
+3. `css/style.css`: el bloque «Control de maqueta».
+4. Del aviso de cookies y de `legal.html`, la mención a
+   `ouzande-maqueta`, que ya no se guarda.
+
+**Para quedarse con la versión sobria**, además: en el `<html>` de las tres
+páginas se pone `class="maqueta-sobria"` a mano. Las reglas del bloque
+«Versión sobria» del CSS y la función `initEscala()` se quedan como están.
+
+**Para quedarse con la versión mecanismo**, no hace falta nada más: es la de
+por defecto. Si quieres adelgazar el archivo, se pueden borrar también el
+bloque «Versión sobria» del CSS y `initEscala()`.
+
+---
+
 ## Mapa de secciones
 
 | # | Sección | Qué hace |
@@ -62,6 +112,7 @@ las que el plazo es el drama real: llegar tarde no se arregla teniendo razón.
 | 06 | **Preguntas** | Seis preguntas en acordeón nativo (`<details>`). |
 | 07 | **Contacto** | Formulario de muestra, datos, y mapa **solo bajo clic**. |
 | — | **Pie** | Sello de demostración, aviso sobre los plazos y enlace al aviso legal. |
+| — | **Control de maqueta** | Mando de demostración, abajo a la izquierda. **Se borra al entregar** (ver arriba). |
 
 Páginas: `index.html`, `legal.html`, `404.html`.
 
@@ -86,6 +137,8 @@ Están concentrados y son fáciles de barrer:
   `js/main.js` → `initMapa()`.
 - **Sello de demostración**: `.pie-demo` en las tres páginas, el comentario
   HTML de cabecera y este README. En un sitio real **desaparece entero**.
+- **El control de maqueta**: se borra siempre. Receta arriba, en «El control
+  de maqueta».
 - **Colegiación**: esta plantilla, a propósito, **no inventa** número de
   colegiación ni colegio. En `legal.html` hay un párrafo que explica dónde
   irían; sustitúyelo por los datos reales.
@@ -108,7 +161,9 @@ cuidado pide, porque da una cifra que alguien puede creerse.
 - El aviso de `.cuadrante-aviso` **no se quita**. Si el despacho no quiere
   aviso, se quita el cuadrante entero.
 - La cinta (`#cinta-pista`) y las fichas de materias repiten plazos: si
-  cambias uno, cámbialo en los tres sitios.
+  cambias uno, cámbialo en los tres sitios — y en el `data-dias` /
+  `data-rotulo` del `<li class="pila-item">`, que alimenta la escala
+  comparativa de la versión sobria. Son cuatro sitios en total.
 
 ### 3. Paleta y tipografía (20 minutos)
 
